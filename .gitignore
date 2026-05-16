@@ -60,3 +60,6 @@ debian/debhelper-build-stamp
 debian/files
 debian/krode/
 debian/krode.substvars
+
+# Junk
+.c*
