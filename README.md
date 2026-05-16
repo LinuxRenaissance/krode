@@ -101,6 +101,15 @@ Response arrives on endpoint `0x81` (URB_INTERRUPT IN), 17 bytes:
 Reverse-engineered from USB traffic captured with Wireshark + USBPcap on Windows.
 Confirmed working on TX unit 1 (PID `0x0063`). PID `0x0068` is untested for delete.
 
+## Support
+
+For questions, troubleshooting, or general discussion, please use the
+Linux Renaissance forum thread:
+
+https://forum.linuxrenaissance.com/t/how-to-delete-recordings-from-rode-interview-pro-on-linux/42
+
+GitHub issues are reserved for confirmed bugs and feature requests.
+
 ## License
 
 BSD-2-Clause. See [LICENSE](LICENSE).
