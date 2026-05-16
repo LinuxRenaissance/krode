@@ -25,7 +25,7 @@ make
 
 ## Install
 
-Install the Debian package (recommended):
+Install the Debian package (recommended). Download the latest `.deb` from the [releases page](https://github.com/karo-fyi/krode/releases), then:
 
 ```
 sudo dpkg -i krode_*.deb
