@@ -1,0 +1,2 @@
+krode usr/bin/
+udev/99-rode-interview-pro.rules usr/lib/udev/rules.d/

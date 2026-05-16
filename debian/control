@@ -1,0 +1,18 @@
+Source: krode
+Section: utils
+Priority: optional
+Maintainer: Linux Renaissance <jerko@cilas.me>
+Build-Depends: debhelper-compat (= 13), libhidapi-dev
+Standards-Version: 4.6.2
+Rules-Requires-Root: no
+
+Package: krode
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Delete onboard recordings from Rode Interview PRO on Linux
+ krode sends a vendor-specific HID command to the Rode Interview PRO
+ wireless microphone transmitter to delete all onboard recordings.
+ This functionality is normally only available through Rode Central,
+ Rode's proprietary Windows/macOS software.
+ .
+ The protocol was reverse-engineered from USB HID traffic captures.
