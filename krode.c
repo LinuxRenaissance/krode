@@ -70,22 +70,10 @@ static int delete_recordings(hid_device *dev, unsigned short pid)
 	return 0;
 }
 
-static int run_on_pid(unsigned short pid)
-{
-	hid_device *dev;
-
-	dev = hid_open(RODE_VID, pid, NULL);
-	if (!dev)
-		return -1;	/* not found, not an error if other PID works */
-
-	delete_recordings(dev, pid);
-	hid_close(dev);
-	return 0;
-}
-
 int main(int argc, char *argv[])
 {
 	int found = 0;
+	struct hid_device_info *devices, *dev_info;
 
 	if (argc < 2 || strcmp(argv[1], "delete") != 0) {
 		fprintf(stderr, "Usage: %s delete\n", argv[0]);
@@ -98,8 +86,16 @@ int main(int argc, char *argv[])
 		return 1;
 	}
 
-	if (run_on_pid(RODE_PID_TX1) == 0) found++;
-	if (run_on_pid(RODE_PID_TX2) == 0) found++;
+	devices = hid_enumerate(RODE_VID, 0);
+	for (dev_info = devices; dev_info; dev_info = dev_info->next) {
+		hid_device *dev = hid_open_path(dev_info->path);
+		if (!dev)
+			continue;
+		delete_recordings(dev, dev_info->product_id);
+		hid_close(dev);
+		found++;
+	}
+	hid_free_enumeration(devices);
 
 	if (found == 0) {
 		fprintf(stderr,

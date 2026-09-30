@@ -67,6 +67,12 @@ Device identifiers:
 |------|-----|-----|
 | Interview PRO TX (unit 1) | `0x19F7` | `0x0063` |
 | Interview PRO TX (unit 2) | `0x19F7` | `0x0068` |
+| Interview PRO TX (some sets) | `0x19F7` | `0x0056` |
+
+PIDs are not consistent across units/firmware — some sets report `0x0056` for
+both TX units. The tool therefore enumerates every device with VID `0x19F7`
+and issues delete on each, rather than probing a fixed list of PIDs (which
+would also only ever reach the first of two units sharing a PID).
 
 ### Delete command
 
@@ -99,7 +105,8 @@ Response arrives on endpoint `0x81` (URB_INTERRUPT IN), 17 bytes:
 | `[3]` | `0x64` | Status: 100 = success |
 
 Reverse-engineered from USB traffic captured with Wireshark + USBPcap on Windows.
-Confirmed working on TX unit 1 (PID `0x0063`). PID `0x0068` is untested for delete.
+Confirmed working on TX unit 1 (PID `0x0063`). The delete command and ACK are
+identical across units; only the VID:PID differs.
 
 ## Support
 
